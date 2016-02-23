@@ -6,9 +6,7 @@
   	<version>0.0.1-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.infodancer.msgdancer</groupId>
   <artifactId>msgdancer-smtp</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>msgdancer-smtp</name>
@@ -24,7 +22,7 @@
       <plugin>
          <artifactId>jdeb</artifactId>
          <groupId>org.vafer</groupId>
-         <version>1.0</version>
+         <version>1.4</version>
          <executions>
                 <execution>
                     <phase>package</phase>
@@ -90,7 +88,7 @@
       <version>[0.0.1-SNAPSHOT,)</version>
     </dependency>
     <dependency>
-      <groupId>org.infodancer.service</groupId>
+      <groupId>org.infodancer.servicedancer</groupId>
       <artifactId>servicedancer-api</artifactId>
       <version>[0.0.1-SNAPSHOT,)</version>
     </dependency>
