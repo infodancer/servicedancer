@@ -15,4 +15,8 @@
     <module>servicedancer-startup</module>
     <module>servicedancer-core</module>
   </modules>
+  <scm>
+    <connection>scm:git:http://infodancer.org/scm/git/servicedancer</connection>
+    <developerConnection>scm:git:http://infodancer.org/scm/git/servicedancer</developerConnection>
+  </scm>
 </project>
