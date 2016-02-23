@@ -1,0 +1,3 @@
+<SyncListener name="pop3s" address="0.0.0.0" port="995" maxConcurrency="250" SSLEnabled="true" keystoreFile="" keystorePass="" clientAuth="false" sslProtocol="TLS">
+        <Service class="org.infodancer.msgdancer.pop.POPService" />
+</SyncListener>

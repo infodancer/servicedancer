@@ -1,0 +1,4 @@
+#!/bin/sh
+ln -s /usr/share/java/commons-codec.jar /opt/servicedancer/smtp/lib/
+ln -s /usr/share/java/commons-codec.jar /opt/servicedancer/ssmtp/lib/
+ln -s /usr/share/java/commons-codec.jar /opt/servicedancer/submission/lib/

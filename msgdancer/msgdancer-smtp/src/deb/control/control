@@ -1,0 +1,12 @@
+Package: [[name]]
+Version: [[version]]
+Section: misc
+Priority: optional
+Architecture: all
+Depends: servicedancer-api
+Depends: servicedancer
+Depends: libcommons-codec-java
+Depends: java5-runtime-headless | java5-runtime | java6-runtime-headless | java6-runtime | java7-runtime-headless | java7-runtime
+Maintainer: Matthew Hunter <matthew@infodancer.org>
+Description: A network service for smtp
+Distribution: development

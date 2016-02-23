@@ -1,0 +1,12 @@
+Package: [[name]]
+Version: [[version]]
+Section: misc
+Priority: optional
+Architecture: all
+Depends: servicedancer
+Depends: servicedancer-api
+Depends: msgdancer-engine-api
+Depends: java5-runtime-headless | java5-runtime | java6-runtime-headless | java6-runtime | java7-runtime-headless | java7-runtime
+Maintainer: Matthew Hunter <matthew@infodancer.org>
+Description: The API implementation for msgdancer-engine-api
+Distribution: development
