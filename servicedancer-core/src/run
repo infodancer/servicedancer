@@ -1,0 +1,19 @@
+#!/bin/sh
+# This run file will start the servicedancer process
+# It is designed to be invoked by daemontools, but can also be run by hand
+JAVA_OPTS="-Djava.awt.headless=true -Xmx4096m -XX:+UseConcMarkSweepGC"
+KEYSTORE="/opt/servicedancer/keystore"
+KEYPASS=`cat </opt/servicedancer/keypass`
+
+# If we have SSL set up
+# The Apache way makes more sense, but requires more code
+if [ -e /opt/servicedancer/keystore ]
+then
+	exec envuidgid sdancer /usr/bin/authbind java -Djavax.net.ssl.keyStore=${KEYSTORE} -Djavax.net.ssl.keyStorePassword=${KEYPASS} ${JAVA_OPTS} -jar /opt/servicedancer/startup.jar /opt/servicedancer/
+fi
+
+# If we don't
+if [ ! -e /opt/servicedancer/keystore ]
+then
+	exec envuidgid sdancer /usr/bin/authbind java ${JAVA_OPTS} -jar /opt/servicedancer/startup.jar /opt/servicedancer/
+fi

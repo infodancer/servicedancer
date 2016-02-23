@@ -1,0 +1,2 @@
+#!/bin/sh
+exec setuidgid servicedancerlog multilog t ./main

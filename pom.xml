@@ -1,0 +1,18 @@
+<project>
+  <parent>
+        <groupId>org.infodancer</groupId>
+        <artifactId>defaults</artifactId>
+        <version>0.0.12</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.infodancer.servicedancer</groupId>
+  <artifactId>servicedancer</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+ 
+  <modules>
+    <module>servicedancer-api</module>
+    <module>servicedancer-startup</module>
+    <module>servicedancer-core</module>
+  </modules>
+</project>

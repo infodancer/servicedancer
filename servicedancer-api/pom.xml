@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+  	<groupId>org.infodancer.servicedancer</groupId>
+  	<artifactId>servicedancer</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>servicedancer-api</artifactId>
+  <packaging>jar</packaging>
+
+  <description>The servicedancer API specification</description>
+  <name>servicedancer-api</name>
+  <url>http://www.infodancer.org/servicedancer-api</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.infodancer.user</groupId>
+      <artifactId>user-api</artifactId>
+      <version>[0.0.1-SNAPSHOT,)</version>
+    </dependency>
+    <dependency>
+      <groupId>org.infodancer.message</groupId>
+      <artifactId>message</artifactId>
+      <version>[0.0.1-SNAPSHOT,)</version>
+    </dependency>
+    </dependencies>
+  <build>
+    <finalName>servicedancer-api</finalName>  
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.0.2</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+      <plugin>
+         <artifactId>jdeb</artifactId>
+         <groupId>org.vafer</groupId>
+         <version>1.0</version>
+         <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>jdeb</goal>
+                    </goals>
+                    <configuration>
+                        <dataSet>
+                            <data>
+                                <src>${project.build.directory}/${project.build.finalName}.jar</src>
+                                <type>file</type>
+                                <mapper>
+                                  <type>perm</type>
+                                  <prefix>/opt/servicedancer/lib</prefix>
+                                </mapper>
+                            </data>
+                        </dataSet>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,10 @@
+#!/bin/sh
+# Add necessary users and groups
+mkdir -p /opt/servicedancer/engines
+mkdir -p /opt/servicedancer/domains
+mkdir -p /opt/servicedancer/listeners
+mkdir -p /opt/servicedancer/log
+chown -R sdancer:staff /opt/servicedancer
+chown -R sdancerlog:staff /opt/servicedancer/log
+adduser --system --home /opt/servicedancer/ sdancer
+adduser --system --home /opt/servicedancer/log sdancerlog

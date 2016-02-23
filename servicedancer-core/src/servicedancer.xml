@@ -1,0 +1,6 @@
+<servicemanager classpath="/opt/infodancer/lib" home="/opt/servicedancer/">
+    <context class="org.infodancer.service.FileContext" file="context.xml" />
+    <engines class="org.infodancer.service.Engines" directory="engines" />
+    <services class="org.infodancer.service.Listeners" directory="services" />
+    <domains class="org.infodancer.domain.directory.DirectoryDomainManager" directory="domains" />
+</servicemanager>

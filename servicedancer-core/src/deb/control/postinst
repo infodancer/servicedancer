@@ -1,0 +1,10 @@
+#!/bin/sh
+chmod +x /opt/servicedancer/run
+chmod +x /opt/servicedancer/debug
+if [ ! -e /opt/servicedancer/keystore ]
+then
+	echo Creating keystore for SSL connections...
+	keytool -genkey -keystore /opt/servicedancer/keystore -keyalg RSA
+	echo Save the password you just created to /opt/servicedancer/keypass
+	echo If you have official keys, you can replace the /opt/servicedancer/keystore file or add your certs to the keystore using the keytool.
+fi
