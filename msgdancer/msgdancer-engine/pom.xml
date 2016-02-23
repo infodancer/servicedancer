@@ -6,9 +6,7 @@
   	<version>0.0.1-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.infodancer.msgdancer</groupId>
   <artifactId>msgdancer-engine</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>msgdancer-engine</name>
@@ -73,7 +71,7 @@
       <version>[0.0.1-SNAPSHOT,)</version>
     </dependency>
     <dependency>
-      <groupId>org.infodancer.service</groupId>
+      <groupId>org.infodancer.servicedancer</groupId>
       <artifactId>servicedancer-api</artifactId>
       <version>[0.0.1-SNAPSHOT,)</version>
     </dependency>
@@ -85,22 +83,22 @@
     <dependency>
       <groupId>org.infodancer.user</groupId>
       <artifactId>user-api</artifactId>
-      <version>[0.0.3-SNAPSHOT,)</version>
+      <version>[0.0.1-SNAPSHOT,)</version>
     </dependency>
     <dependency>
-      <groupId>org.infodancer.persist</groupId>
-      <artifactId>entitydancer</artifactId>
-      <version>[1.0.8-SNAPSHOT,)</version>
+      <groupId>org.infodancer.entitydancer</groupId>
+      <artifactId>entitydancer-core</artifactId>
+      <version>[0.0.1-SNAPSHOT,)</version>
     </dependency>
     <dependency>
-      <groupId>org.infodancer.persist</groupId>
+      <groupId>org.infodancer.entitydancer</groupId>
       <artifactId>entitydancer-sql</artifactId>
-      <version>[1.0.5-SNAPSHOT,)</version>
+      <version>[0.0.1-SNAPSHOT,)</version>
     </dependency>
     <dependency>
-      <groupId>org.infodancer.persist</groupId>
-      <artifactId>entitydancer-dbapi</artifactId>
-      <version>[1.0.5-SNAPSHOT,)</version>
+      <groupId>org.infodancer.entitydancer</groupId>
+      <artifactId>entitydancer-api</artifactId>
+      <version>[0.0.1-SNAPSHOT,)</version>
     </dependency>
     <dependency>
       <groupId>javax.persistence</groupId>
