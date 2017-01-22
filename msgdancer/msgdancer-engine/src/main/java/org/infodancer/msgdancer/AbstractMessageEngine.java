@@ -1,6 +1,7 @@
 package org.infodancer.msgdancer;
 
 import java.security.MessageDigest;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.infodancer.service.api.domain.Domain;
 import org.infodancer.service.api.domain.DomainManager;
 import org.infodancer.user.User;
 import org.infodancer.user.UserManager;
+import org.infodancer.user.UserException;
 
 public abstract class AbstractMessageEngine implements MessageEngine
 {
@@ -99,21 +101,30 @@ public abstract class AbstractMessageEngine implements MessageEngine
 	
 	public boolean verifyEmailAddress(EmailAddress address)
 	{
-		String domainName = address.getDomain();
-		Domain domain = dm.getDomain(domainName);
-		if (domain != null)
+		try
 		{
-			String userName = address.getUser();
-			UserManager um = domain.getUserManager();
-			if (um != null)
+			String domainName = address.getDomain();
+			Domain domain = dm.getDomain(domainName);
+			if (domain != null)
 			{
-				User user = um.findUserByUsername(userName);
-				if (user != null) return true;
+				String userName = address.getUser();
+				UserManager um = domain.getUserManager();
+				if (um != null)
+				{
+					User user = um.findUserByUsername(userName);
+					if (user != null) return true;
+					else return false;
+				}
 				else return false;
 			}
 			else return false;
 		}
-		else return false;
+		
+		catch (UserException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
