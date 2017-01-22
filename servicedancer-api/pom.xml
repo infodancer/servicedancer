@@ -33,18 +33,9 @@
     <finalName>servicedancer-api</finalName>  
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.0.2</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>
-      <plugin>
          <artifactId>jdeb</artifactId>
          <groupId>org.vafer</groupId>
-         <version>1.4</version>
+         <version>1.5</version>
          <executions>
                 <execution>
                     <phase>package</phase>

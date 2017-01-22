@@ -12,8 +12,8 @@
     <module>msgdancer</module>
   </modules>
   <scm>
-    <connection>scm:git:http://infodancer.org/scm/git/servicedancer</connection>
-    <developerConnection>scm:git:http://infodancer.org/scm/git/servicedancer</developerConnection>
+    <connection>scm:git:git://git.infodancer.org/servicedancer</connection>
+    <developerConnection>scm:git:git+ssh://git.infodancer.org/srv/git/servicedancer</developerConnection>
   </scm>
   <distributionManagement>
     <repository>
