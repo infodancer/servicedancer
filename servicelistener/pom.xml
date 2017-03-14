@@ -31,7 +31,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>org.infodancer.service.Listener</mainClass>  
+              <mainClass>org.infodancer.service.IndependentServiceListener</mainClass>  
             </manifest>
           </archive>
         </configuration>
