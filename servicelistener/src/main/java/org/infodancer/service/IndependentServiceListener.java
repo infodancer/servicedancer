@@ -1,5 +1,9 @@
 package org.infodancer.service;
 
+import java.io.File;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 /**
  * Runs from the command line to listen on a port for incoming network connections.
  * This class is designed to operation along lines similar to djb's tcpserver program. 
@@ -24,11 +28,40 @@ public class IndependentServiceListener
 {
 	public static final void main(String[] args)
 	{
-		if (args.length < 2) 
+		try
 		{
-			System.out.println("USAGE: java -jar servicelistener.jar <ipaddress> <port>");
-			System.out.println("       --context=<context file>");
-			System.exit(1);
+			if (args.length < 2) 
+			{
+				System.out.println("USAGE: java -jar servicelistener.jar <ipaddress> <port> <context file>");
+				System.exit(1);
+			}
+			
+			InetAddress ipaddress = validateIpAddressArgument(args[1]);
+			int port = validatePortArgument(args[2]);
+			File contextFile = validateContextFileArgument(args[3]);
+			
+			// ServiceListener listener = new ServiceListener();
 		}
+		
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	private static File validateContextFileArgument(String s) 
+	{
+		File contextFile = new File(s);
+		return contextFile;
+	}
+
+	private static int validatePortArgument(String s) 
+	{
+		return Integer.parseInt(s);
+	}
+
+	private static InetAddress validateIpAddressArgument(String s) throws UnknownHostException 
+	{
+		return InetAddress.getByName(s);
 	}
 }

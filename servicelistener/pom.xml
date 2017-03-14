@@ -21,6 +21,16 @@
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.infodancer.servicedancer</groupId>
+      <artifactId>servicedancer-api</artifactId>
+      <version>[0.0.1-SNAPSHOT,)</version>
+    </dependency>
+    <dependency>
+      <groupId>org.infodancer.servicedancer</groupId>
+      <artifactId>servicedancer-core</artifactId>
+      <version>[0.0.1-SNAPSHOT,)</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>servicelistener</finalName>  
