@@ -88,7 +88,6 @@ public class DirectoryDomain extends AbstractDomain implements Domain
 	 * Attempts to acquire the UserManager for this domain from the domain context.
 	 * @return UserManager is found, null if not.
 	 */
-	@Override
 	public UserManager getUserManager()
 	{
 		try
@@ -108,7 +107,6 @@ public class DirectoryDomain extends AbstractDomain implements Domain
 	 * Attempts to acquire the UserManager for this domain from the domain context.
 	 * @return UserManager is found, null if not.
 	 */
-	@Override
 	public MessageStore getMessageStore()
 	{
 		try

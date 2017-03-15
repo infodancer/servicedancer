@@ -18,7 +18,6 @@ public class EntityDomainManager implements DomainManager
 {
 	EntityManager em;
 	
-	@Override
 	public void start() throws LifecycleException
 	{
 		try
@@ -33,28 +32,24 @@ public class EntityDomainManager implements DomainManager
 		}
 	}
 
-	@Override
 	public void stop() throws LifecycleException
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public Domain getDomain(String name)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public void createDomain(String name)
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void removeDomain(String name)
 	{
 		// TODO Auto-generated method stub

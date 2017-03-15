@@ -35,7 +35,6 @@ public class SyncConnectionImpl extends ServiceConnectionImpl implements SyncCon
 		return socket.getOutputStream();
 	}
 
-	@Override
 	public boolean startTLS() throws IOException
 	{
 		if (ssl) return true;
@@ -49,7 +48,6 @@ public class SyncConnectionImpl extends ServiceConnectionImpl implements SyncCon
 		return false;
 	}
 
-	@Override
 	public boolean isSSLEnabled()
 	{
 		return ssl;

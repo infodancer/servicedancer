@@ -48,19 +48,16 @@ public abstract class ServiceConnectionImpl implements ServiceConnection
 		return localAddress.getCanonicalHostName();
 	}
 	
-	@Override
 	public InetAddress getLocalAddress()
 	{
 		return socket.getLocalAddress();
 	}
 
-	@Override
 	public InetAddress getRemoteAddress()
 	{
 		return socket.getInetAddress();
 	}
 
-	@Override
 	public String getRemoteName()
 	{
 		java.net.InetAddress localAddress = socket.getInetAddress(); 

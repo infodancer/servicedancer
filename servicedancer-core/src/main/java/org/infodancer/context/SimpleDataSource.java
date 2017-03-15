@@ -127,7 +127,6 @@ public class SimpleDataSource implements DataSource
 		this.driverInstance = (java.sql.Driver) driverClass.newInstance();		
 	}
 
-	@Override
 	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
 		// TODO Auto-generated method stub
 		return null;
