@@ -3,6 +3,11 @@ package org.infodancer.service;
 import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Hashtable;
+
+import org.infodancer.context.ContextParser;
+import org.infodancer.context.SimpleContext;
+import org.infodancer.service.sync.SyncListener;
 
 /**
  * Runs from the command line to listen on a port for incoming network connections.
@@ -19,13 +24,23 @@ import java.net.UnknownHostException;
  * take advantage of long-running processes for code optimization, and can be set up to use a shared configuration
  * by pointing multiple services to the same context file.  
  * 
- * However, those separate context files will not represent the context instance, and thus interprocess communication
+ * However, those separate context files will not represent the same context instance, and thus interprocess communication
  * will need to use a different mechanism.  
+ * 
+ * The third argument here is uncertain.  Should we assume the current working directory is a service directory, 
+ * with a context file, a lib directory for jars, and so on?  Should we provide a service directory on the command line
+ * as the third argument?  Should we provide the context file?
  * @author matthew@infodancer.org
  *
  */
-public class IndependentServiceListener
+public class IndependentServiceListener extends SyncListener
 {
+	public IndependentServiceListener(ClassLoader cl, File directory)
+	{
+		super(cl, directory);
+	}
+	
+	
 	public static final void main(String[] args)
 	{
 		try
@@ -40,7 +55,17 @@ public class IndependentServiceListener
 			int port = validatePortArgument(args[2]);
 			File contextFile = validateContextFileArgument(args[3]);
 			
-			// ServiceListener listener = new ServiceListener();
+			ClassLoader cl = ClassLoader.getSystemClassLoader();
+			// We want to start out with an empty context and then parse the context file
+			SimpleContext context = new SimpleContext(new Hashtable());
+			ContextParser.parseContextFile(context, contextFile);
+			// TODO still working out how to provide these parameters
+			File directory = new File("/tmp/");
+			IndependentServiceListener listener = new IndependentServiceListener(cl, directory);
+			
+			listener.setAddress(ipaddress);
+			listener.setPort(port);
+			listener.start();
 		}
 		
 		catch (Exception e)
