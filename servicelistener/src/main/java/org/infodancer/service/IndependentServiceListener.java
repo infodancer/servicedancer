@@ -1,6 +1,8 @@
 package org.infodancer.service;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Hashtable;
@@ -35,6 +37,8 @@ import org.infodancer.service.sync.SyncListener;
  */
 public class IndependentServiceListener extends SyncListener
 {
+	private static final String CONTEXT_XML = "context.xml";
+
 	public IndependentServiceListener(ClassLoader cl, File directory)
 	{
 		super(cl, directory);
@@ -47,22 +51,26 @@ public class IndependentServiceListener extends SyncListener
 		{
 			if (args.length < 2) 
 			{
-				System.out.println("USAGE: java -jar servicelistener.jar <ipaddress> <port> <context file>");
+				System.out.println("USAGE: java -jar servicelistener.jar <ipaddress> <port> <service directory>");
 				System.exit(1);
 			}
 			
 			InetAddress ipaddress = validateIpAddressArgument(args[1]);
-			int port = validatePortArgument(args[2]);
-			File contextFile = validateContextFileArgument(args[3]);
-			
-			ClassLoader cl = ClassLoader.getSystemClassLoader();
+			int port = ServiceUtility.validatePortArgument(args[2]);
+			File serviceDirectory = validateServiceDirectoryArgument(args[3]);
+
+			ClassLoader parentClassLoader = ClassLoader.getSystemClassLoader();
+			ServiceClassLoader cl = ServiceClassLoader.createServiceClassLoader(serviceDirectory, parentClassLoader);
 			// We want to start out with an empty context and then parse the context file
 			SimpleContext context = new SimpleContext(new Hashtable());
-			ContextParser.parseContextFile(context, contextFile);
-			// TODO still working out how to provide these parameters
-			File directory = new File("/tmp/");
-			IndependentServiceListener listener = new IndependentServiceListener(cl, directory);
 			
+			File contextFile = new File(serviceDirectory + File.separator + CONTEXT_XML);
+			if (contextFile.exists())
+			{
+				ContextParser.parseContextFile(context, contextFile);
+			}
+			else System.out.println("Warning: No context file found at " + contextFile.getAbsolutePath());
+			IndependentServiceListener listener = new IndependentServiceListener(cl, serviceDirectory);
 			listener.setAddress(ipaddress);
 			listener.setPort(port);
 			listener.start();
@@ -74,15 +82,19 @@ public class IndependentServiceListener extends SyncListener
 		}
 	}
 
-	private static File validateContextFileArgument(String s) 
+	private static File validateServiceDirectoryArgument(String s) 
 	{
-		File contextFile = new File(s);
-		return contextFile;
-	}
+		File result = new File(s);
+		if (result.exists())
+		{
+	
+		}
+		else
+		{
+			
+		}
 
-	private static int validatePortArgument(String s) 
-	{
-		return Integer.parseInt(s);
+		return result;
 	}
 
 	private static InetAddress validateIpAddressArgument(String s) throws UnknownHostException 

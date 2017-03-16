@@ -36,17 +36,30 @@
     <finalName>servicelistener</finalName>  
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version>
+        <!-- NOTE: We don't need a groupId specification because the group is
+             org.apache.maven.plugins ...which is assumed by default.
+         -->
+        <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
           <archive>
             <manifest>
-              <mainClass>org.infodancer.service.IndependentServiceListener</mainClass>  
+              <mainClass>org.infodancer.service.IndependentServiceListener</mainClass>
             </manifest>
           </archive>
         </configuration>
-	  </plugin>  
+        <executions>
+          <execution>
+            <id>make-assembly</id> <!-- this is used for inheritance merges -->
+            <phase>package</phase> <!-- bind to the packaging phase -->
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
          <artifactId>jdeb</artifactId>
          <groupId>org.vafer</groupId>
