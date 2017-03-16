@@ -1,14 +1,13 @@
 package org.infodancer.service;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Hashtable;
 
 import org.infodancer.context.ContextParser;
 import org.infodancer.context.SimpleContext;
+import org.infodancer.service.api.sync.SyncService;
 import org.infodancer.service.sync.SyncListener;
 
 /**
@@ -29,9 +28,6 @@ import org.infodancer.service.sync.SyncListener;
  * However, those separate context files will not represent the same context instance, and thus interprocess communication
  * will need to use a different mechanism.  
  * 
- * The third argument here is uncertain.  Should we assume the current working directory is a service directory, 
- * with a context file, a lib directory for jars, and so on?  Should we provide a service directory on the command line
- * as the third argument?  Should we provide the context file?
  * @author matthew@infodancer.org
  *
  */
@@ -51,14 +47,14 @@ public class IndependentServiceListener extends SyncListener
 		{
 			if (args.length < 2) 
 			{
-				System.out.println("USAGE: java -jar servicelistener.jar <ipaddress> <port> <service directory>");
+				System.out.println("USAGE: java -jar servicelistener.jar <ipaddress> <port> <service class> <service directory>");
 				System.exit(1);
 			}
 			
 			InetAddress ipaddress = validateIpAddressArgument(args[1]);
 			int port = ServiceUtility.validatePortArgument(args[2]);
-			File serviceDirectory = validateServiceDirectoryArgument(args[3]);
-
+			String serviceClassName = validateServiceClassNameArgument(args[3]);
+			File serviceDirectory = validateServiceDirectoryArgument(args[4]);
 			ClassLoader parentClassLoader = ClassLoader.getSystemClassLoader();
 			ServiceClassLoader cl = ServiceClassLoader.createServiceClassLoader(serviceDirectory, parentClassLoader);
 			// We want to start out with an empty context and then parse the context file
@@ -70,7 +66,10 @@ public class IndependentServiceListener extends SyncListener
 				ContextParser.parseContextFile(context, contextFile);
 			}
 			else System.out.println("Warning: No context file found at " + contextFile.getAbsolutePath());
+			
+			SyncService service = (SyncService) cl.loadClass(serviceClassName).newInstance();
 			IndependentServiceListener listener = new IndependentServiceListener(cl, serviceDirectory);
+			listener.setSyncService(service);
 			listener.setAddress(ipaddress);
 			listener.setPort(port);
 			listener.start();
@@ -81,6 +80,12 @@ public class IndependentServiceListener extends SyncListener
 			e.printStackTrace();
 		}
 	}
+
+	private static String validateServiceClassNameArgument(String s) 
+	{
+		return s;
+	}
+
 
 	private static File validateServiceDirectoryArgument(String s) 
 	{
