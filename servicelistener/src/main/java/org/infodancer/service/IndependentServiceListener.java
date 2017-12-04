@@ -52,7 +52,7 @@ public class IndependentServiceListener extends SyncListener
 			}
 			
 			InetAddress ipaddress = validateIpAddressArgument(args[1]);
-			int port = ServiceUtility.validatePortArgument(args[2]);
+			int port = validatePortArgument(args[2]);
 			String serviceClassName = validateServiceClassNameArgument(args[3]);
 			File serviceDirectory = validateServiceDirectoryArgument(args[4]);
 			ClassLoader parentClassLoader = ClassLoader.getSystemClassLoader();
@@ -106,4 +106,10 @@ public class IndependentServiceListener extends SyncListener
 	{
 		return InetAddress.getByName(s);
 	}
+
+	private static int validatePortArgument(String s) throws UnknownHostException 
+	{
+		return Integer.parseInt(s);
+	}
+
 }
