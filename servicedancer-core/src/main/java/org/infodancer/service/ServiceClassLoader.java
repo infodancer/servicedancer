@@ -38,5 +38,4 @@ public class ServiceClassLoader extends URLClassLoader
 		}
 		return new ServiceClassLoader(urls.toArray(new URL[urls.size()]), parent);
 	}
-
 }

@@ -5,6 +5,8 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Hashtable;
 
+import javax.naming.Context;
+
 import org.infodancer.context.ContextParser;
 import org.infodancer.context.SimpleContext;
 import org.infodancer.service.api.sync.SyncService;
@@ -51,14 +53,16 @@ public class IndependentServiceListener extends SyncListener
 				System.exit(1);
 			}
 			
-			InetAddress ipaddress = validateIpAddressArgument(args[1]);
-			int port = validatePortArgument(args[2]);
-			String serviceClassName = validateServiceClassNameArgument(args[3]);
-			File serviceDirectory = validateServiceDirectoryArgument(args[4]);
+			InetAddress ipaddress = validateIpAddressArgument(args[0]);
+			int port = validatePortArgument(args[1]);
+			String serviceClassName = validateServiceClassNameArgument(args[2]);
+			File serviceDirectory = validateServiceDirectoryArgument(args[3]);
 			ClassLoader parentClassLoader = ClassLoader.getSystemClassLoader();
 			ServiceClassLoader cl = ServiceClassLoader.createServiceClassLoader(serviceDirectory, parentClassLoader);
 			// We want to start out with an empty context and then parse the context file
-			SimpleContext context = new SimpleContext(new Hashtable());
+			Hashtable env = new Hashtable();
+			env.put(Context.INITIAL_CONTEXT_FACTORY, 			    "org.infodancer.context.InitialContextFactory");
+			SimpleContext context = new SimpleContext(env);
 			
 			File contextFile = new File(serviceDirectory + File.separator + CONTEXT_XML);
 			if (contextFile.exists())
