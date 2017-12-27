@@ -70,9 +70,10 @@ public class IndependentServiceListener extends SyncListener
 				ContextParser.parseContextFile(context, contextFile);
 			}
 			else System.out.println("Warning: No context file found at " + contextFile.getAbsolutePath());
-			
+			Thread.currentThread().setContextClassLoader(cl);
 			SyncService service = (SyncService) cl.loadClass(serviceClassName).newInstance();
 			IndependentServiceListener listener = new IndependentServiceListener(cl, serviceDirectory);
+			listener.setClassLoader(cl);
 			listener.setSyncService(service);
 			listener.setAddress(ipaddress);
 			listener.setPort(port);

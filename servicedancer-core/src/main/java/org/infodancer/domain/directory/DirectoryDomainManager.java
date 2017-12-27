@@ -22,11 +22,6 @@ public class DirectoryDomainManager implements DomainManager
 		return directory;
 	}
 
-	public void setDirectory(java.io.File directory)
-	{
-		this.directory = directory;
-	}
-
 	public void setDirectory(String directory)
 	{
 		this.directory = new java.io.File(directory);
