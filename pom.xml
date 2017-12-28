@@ -17,15 +17,10 @@
     <developerConnection>scm:git:git+ssh://git.infodancer.org/srv/git/servicedancer</developerConnection>
   </scm>
   <distributionManagement>
-    <repository>
-      <id>archiva.internal</id>
-      <name>Internal Release Repository</name>
-      <url>http://archiva.infodancer.org:8080/repository/internal/</url>
-    </repository>
     <snapshotRepository>
-      <id>archiva.snapshots</id>
-      <name>Internal Snapshot Repository</name>
-      <url>http://archiva.infodancer.org:8080/repository/snapshots/</url>
+        <id>snapshots</id>
+        <name>71fd42ce8655-snapshots</name>
+        <url>http://192.168.1.1:8081/artifactory/libs-snapshot</url>
     </snapshotRepository>
   </distributionManagement>
 </project>
