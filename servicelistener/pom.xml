@@ -20,11 +20,18 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>org.infodancer.servicedancer</groupId>
-      <artifactId>servicedancer-api</artifactId>
-      <version>[0.0.1-SNAPSHOT,)</version>
-    </dependency>
+  <!-- Docker support for the future 
+	  <dependency>
+    	<groupId>com.spotify</groupId>
+    	<artifactId>dockerfile-maven-plugin</artifactId>
+    	<version>1.0.0</version>
+	  </dependency>
+   -->
+  	  <dependency>
+      	<groupId>org.infodancer.servicedancer</groupId>
+      	<artifactId>servicedancer-api</artifactId>
+      	<version>[0.0.1-SNAPSHOT,)</version>
+    	</dependency>
     <dependency>
       <groupId>org.infodancer.servicedancer</groupId>
       <artifactId>servicedancer-core</artifactId>
@@ -84,7 +91,29 @@
                 </execution>
             </executions>
         </plugin>
-      
+        <!-- Docker support for the future
+      	<plugin>	
+  			<groupId>com.spotify</groupId>
+  			<artifactId>dockerfile-maven-plugin</artifactId>
+  			<version>1.0.0</version>
+  			<executions>
+    			<execution>
+      				<id>default</id>
+      				<goals>
+        				<goal>build</goal>
+        				<goal>push</goal>
+      				</goals>
+    			</execution>
+  			</executions>
+  			<configuration>
+    			<repository>spotify/foobar</repository>
+    			<tag>${project.version}</tag>
+    			<buildArgs>
+      				<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+    			</buildArgs>
+  			</configuration>
+		</plugin>
+		 -->
     </plugins>
   </build>    
 </project>

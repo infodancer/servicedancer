@@ -20,7 +20,7 @@
     <snapshotRepository>
         <id>snapshots</id>
         <name>71fd42ce8655-snapshots</name>
-        <url>http://192.168.1.1:8081/artifactory/libs-snapshot</url>
+        <url>http://artifactory.infodancer.org:8081/artifactory/libs-snapshot</url>
     </snapshotRepository>
   </distributionManagement>
 </project>
