@@ -9,7 +9,7 @@
   <artifactId>servicedancer-core</artifactId>
   <packaging>jar</packaging>
 
-  <name>servicedancer</name>
+  <name>servicedancer-core</name>
   <url>http://www.infodancer.org/srcdancer/project/servicedancer</url>
   <description>
   ServiceDancer is an attempt to implement a flexible, java-based network 
@@ -50,7 +50,7 @@
     <dependency>
       <groupId>org.infodancer.archive</groupId>
       <artifactId>archive</artifactId>
-      <version>[0.0.1-SNAPSHOT,)</version>
+      <version>[0.0.2-SNAPSHOT,)</version>
     </dependency>
     <dependency>
       <groupId>org.infodancer.bootstrap</groupId>
@@ -70,7 +70,7 @@
     </dependency>
   </dependencies>  
   <build>
-    <finalName>servicedancer</finalName>
+    <finalName>servicedancer-core</finalName>
     <plugins>
       <plugin>
          <artifactId>jdeb</artifactId>

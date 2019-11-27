@@ -10,30 +10,32 @@ import org.infodancer.service.api.domain.DomainManager;
 public class DirectoryDomainManager implements DomainManager 
 {
 	HashMap<String,Domain> domains = new HashMap<String,Domain>();
-	File directory;
+	String directory;
 
 	public DirectoryDomainManager()
 	{
 		
 	}
 	
-	public java.io.File getDirectory()
+	public String getDirectory()
 	{
 		return directory;
 	}
 
 	public void setDirectory(String directory)
 	{
-		this.directory = new java.io.File(directory);
+		this.directory = directory;
 	}
 
 	public void start() throws LifecycleException 
 	{
 		try
 		{
-			if (directory.exists())
+			File dir = new File(directory);
+			if (dir.exists())
 			{
-				File[] domainDirectories = directory.listFiles();
+				File[] domainDirectories = dir
+						.listFiles();
 				for (int i = 0; i < domainDirectories.length; i++)
 				{
 					if (domainDirectories[i].isDirectory())

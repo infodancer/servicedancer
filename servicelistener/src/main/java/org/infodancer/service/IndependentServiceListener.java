@@ -61,7 +61,7 @@ public class IndependentServiceListener extends SyncListener
 			ServiceClassLoader cl = ServiceClassLoader.createServiceClassLoader(serviceDirectory, parentClassLoader);
 			// We want to start out with an empty context and then parse the context file
 			Hashtable env = new Hashtable();
-			env.put(Context.INITIAL_CONTEXT_FACTORY, 			    "org.infodancer.context.InitialContextFactory");
+			env.put(Context.INITIAL_CONTEXT_FACTORY, "org.infodancer.context.InitialContextFactory");
 			SimpleContext context = new SimpleContext(env);
 			
 			File contextFile = new File(serviceDirectory + File.separator + CONTEXT_XML);

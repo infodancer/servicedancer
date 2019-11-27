@@ -80,6 +80,8 @@ public class BeanFactory implements ObjectFactory
                     String propName = ra.getType();
                     
                     if (propName.equalsIgnoreCase("factory")) continue;
+                    if (propName.equalsIgnoreCase("type")) continue;
+                    if (propName.equalsIgnoreCase("name")) continue;
                     
                     String value = (String)ra.getContent();
                     
@@ -116,7 +118,7 @@ public class BeanFactory implements ObjectFactory
                                        || propType.equals(boolean.class)) {
                                 valueArray[0] = new Boolean(value);
                             } else {
-                            	String error = "String conversion for property " + propName + "<" + propType + "> not available."; 
+                            	String error = "String conversion for property " + propName + "<" + propType + "> on resource " + name + " not available."; 
                             	log.warning(error);
                             }
                             
